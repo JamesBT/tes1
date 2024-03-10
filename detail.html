@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Detail Page</title>
+    <link rel="stylesheet" href="/src/css/detail.css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PWAGram">
+    <link rel="apple-touch-icon" href="/src/images/icons/icon-48x48.png" sizes="48x48">
+    <link rel="apple-touch-icon" href="/src/images/icons/icon-60x60.png" sizes="60x60">
+    <link rel="apple-touch-icon" href="/src/images/icons/icon-72x72.png" sizes="72x72">
+    <link rel="apple-touch-icon" href="/src/images/icons/icon-96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" href="/src/images/icons/icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon" href="/src/images/icons/icon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/src/images/icons/icon-512x512.png" sizes="512x512">
+    <meta name="msapplication-TileImage" content="/src/images/icons/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#fff">
+    <meta name="theme-color" content="#3f51b5">
+  </head>
+  <body background="#9db2bf">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <div class="back-to-home">
+            <button class="mdl-button mdl-js-button mdl-button--icon" id="back-image-button">
+              <i class="material-icons">arrow_back</i>
+            </button>
+            <span>back to Home</span>
+          </div>
+          <div class="mdl-layout-spacer"></div>
+          <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <a class="home-button" href="/">Home</a>
+            <a class="about-button" href="/about.html">About</a>
+          </nav>
+        </div>
+      </header>
+      
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Fitness</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="/">Home</a>
+          <a class="mdl-navigation__link" href="/about.html">About</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="targetDiv"></div>
+        <div>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="back-image-button-2">
+            <i class="material-icons">arrow_back</i>
+            Back to Home
+          </button>
+        </div>
+      </main>
+    </div>
+    
+
+    <script defer src="/src/js/material.min.js"></script>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+    <script>
+      // untuk kembali ke halaman home
+      document.addEventListener('DOMContentLoaded', function () {
+        var backButton = document.querySelector('.back-to-home');
+        if (backButton) {
+          backButton.addEventListener('click', function () {
+            console.log("home ditekan")
+            window.location.href = '/index.html';
+          });
+        }
+
+        var backButton2 = document.getElementById('back-image-button-2');
+        backButton2.addEventListener('click', function () {
+          window.location.href = '/index.html';
+        });
+
+        
+      });
+    </script>
+
+    <script>
+      // untuk terima data dari halaman home
+      function handleReceivedData(data) {
+        var targetDiv = document.querySelector('.targetDiv');
+        console.log(escapeHtml(data))
+        targetDiv.innerHTML = `
+          <p class="detailTitle">${escapeHtml(data.title)}</p>  
+          <div class="tptDetailImage"><img class="detailImage" src="${escapeHtml(data.image)}" alt="Image"></div>
+          <p class="detailDetail">${escapeHtml(data.detail)}</p>
+        `;
+      }
+
+      function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+      }
+
+      function getQueryParam(param) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      var itemId = getQueryParam('id');
+      var image = getQueryParam('image');
+      var detail = getQueryParam('detail');
+      var title = getQueryParam('title');
+
+      if (itemId && image && detail && title) {
+        var receivedData = {
+          id: itemId,
+          image: image,
+          detail: detail,
+          title: title
+        };
+
+        handleReceivedData(receivedData);
+      } else {
+        console.error('Missing or invalid parameters in the URL');
+      }
+    </script>
+    <script>
+      // kalau di hp delete drawer button
+      window.onload = function () {
+        var drawerButton = document.querySelector('.mdl-layout__drawer-button');
+
+        if (drawerButton) {
+          if (window.innerWidth <= 767) {
+            drawerButton.remove();
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+.mdl-layout .mdl-layout__header{
+  background-color: #27374d !important;
+  background: url(/src/images/bg-main.jpg) center/cover;
+  height: 30%;
+  background-size:100% 100%;
+  font-family: 'Quicksand', sans-serif;
+
+  @media (max-width: 767px) {
+    height: 17%;
+    background-size: 100% 100%;
+  }
+}
+
+.mdl-layout__header-row {
+  background-color: #27374d;
+  color: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  font-family: 'Quicksand', sans-serif;
+}
+.mdl-layout__header-row .mdl-layout-title, 
+.mdl-layout__header-row .mdl-navigation .mdl-navigation__link {
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.mdl-layout .mdl-layout__header-row .home-button,
+.mdl-layout .mdl-layout__header-row .about-button{
+  position: relative;
+  height: 30px;
+  width: 100px;
+  margin: 0 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: 2px solid #27374d;
+  color: white;
+  background-color: #27374d;
+  border-radius: 5px;
+  transition: opacity .35s ease, background-color .35s ease, color .35s ease;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.mdl-layout .mdl-layout__header-row .home-button:hover,
+.mdl-layout .mdl-layout__header-row .about-button:hover {
+  background-color: white;
+  color: #27374d;
+  border-radius: 5px;
+}
+
+.mdl-layout .page-context{
+  margin: 1.5%;
+}
+
+.mdl-layout__content {
+  background-color: #9DB2BF;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.bg-main-image {
+  max-width: 500px;
+  margin: auto;
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-radius: 10%;
+}
+
+.page-context {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+}
+.drawer-option {
+    padding: 16px;
+}
+
+.centered-text {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Ensure the text is above the image */
+  width: 100%;
+  color: #DDE6ED;
+  font-family: 'Quicksand', sans-serif;
+}
